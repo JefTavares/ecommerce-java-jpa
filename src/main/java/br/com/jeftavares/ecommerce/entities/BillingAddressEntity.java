@@ -20,9 +20,10 @@ public class BillingAddressEntity {
     @Column(name = "complement")
     private String complement;
 
-    //na minha tabela tb_billing_address não quero adicionar uma coluna indicando qual usuario esse endereço é referente
-    @OneToOne(mappedBy = "billingAddress")
-    private UserEntity user;
+    //na minha tabela tb_billing_address não quero adicionar uma coluna indicando qual usuário esse endereço é referente
+    //relacionamento não necessário, pois o é um relacionamento unidirecional
+//    @OneToOne(mappedBy = "billingAddress")
+//    private UserEntity user;
 
     public BillingAddressEntity() {
         //Como é uma classe de banco de dados (entity) o construtor é vazio
@@ -60,11 +61,11 @@ public class BillingAddressEntity {
         this.number = number;
     }
 
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
+//    public UserEntity getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UserEntity user) {
+//        this.user = user;
+//    }
 }

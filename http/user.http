@@ -1,0 +1,20 @@
+### Crete User
+@user_id = variable value
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "fullName": "Jeferson Tavares",
+  "address": "Rua: Mim morvam dias de figueiredo",
+  "number": "7",
+  "complement": ""
+}
+
+<> {{response.headers.Location.split("/")[-1]}}
+
+### Get User
+GET http://localhost:8080/users/cba3482f-a76f-446a-871e-9dca35a54168
+
+### Delete User
+DELETE http://localhost:8080/users/6e616084-3727-45e3-9476-46164739c0d7
