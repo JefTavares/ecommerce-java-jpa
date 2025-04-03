@@ -3,9 +3,10 @@ package br.com.jeftavares.ecommerce.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table(name = "tb_product")
+@Table(name = "tb_products")
 public class ProductEntity {
 
     @Id
@@ -19,7 +20,19 @@ public class ProductEntity {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToMany
+     //Tabela Associativa, basicamente cria uma tabela fazendo a amarração entre as entidades
+    @JoinTable(
+            name = "tb_products_tags",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"product_id", "tag_id"}), //criar um indice único para que o mesmo produto nao esteja amarrado a mesma tag
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+
+    )
+    private List<TagEntity> tags;
+    
     public ProductEntity() {
+        //Construtor vazio, pois é uma classe de banco de dados (entity)
     }
 
     public Long getProductId() {
@@ -44,5 +57,13 @@ public class ProductEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<TagEntity> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<TagEntity> tags) {
+        this.tags = tags;
     }
 }
